@@ -50,13 +50,14 @@ const AuthForm = ({ refreshUser }) => {
 
   return (
     <>
-      <form onSubmit={submitBtnClicked}>
+      <form onSubmit={submitBtnClicked} className="container">
         <input
           name="email"
           type="email"
           placeholder="Email"
           value={email}
           onChange={inputChanged}
+          className="authInput"
           required
         />
         <input
@@ -65,12 +66,17 @@ const AuthForm = ({ refreshUser }) => {
           placeholder="Password"
           value={password}
           onChange={inputChanged}
+          className="authInput"
           required
         />
-        <input type="submit" value={account ? "Login" : "Register"} />
-        {err}
+        <input
+          type="submit"
+          value={account ? "Login" : "Register"}
+          className="authInput authSubmit"
+        />
+        {err && <span className="authError">{err}</span> }
       </form>
-      <span onClick={toggleAccount}>
+      <span onClick={toggleAccount} className="authSwitch">
         {account ? "Register" : "Login"}
       </span>
     </>

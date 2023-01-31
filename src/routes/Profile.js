@@ -41,22 +41,33 @@ const Profile = ({ curUser, refreshUser }) => {
     }, []);
 
     return (
-        <>
-            <div>
+        <div className="container">
+            {/* <div>
                 <img src={curUser.photoURL} alt="img" width="50px" height="50px" />
                 <h4>{curUser.displayName}</h4>
-            </div>
-            <form onSubmit={nameFormSubmitted}>
+            </div> */}
+            <form onSubmit={nameFormSubmitted} className="profileForm">
                 <input
                     type="text"
                     placeholder="Set your name"
                     value={newName}
                     onChange={nameInputChanged}
+                    className="formInput"
+                    autoFocus
                 />
-                <input type="submit" value="Confirm" />
+                <input
+                    type="submit"
+                    value="Update Profile"
+                    className="formBtn"
+                    style={{
+                        marginTop: 10,
+                    }}
+                />
             </form>
-            <button onClick={logoutBtnClicked}>Logout</button>
-        </>
+            <span className="formBtn cancelBtn logOut" onClick={logoutBtnClicked}>
+                Log Out
+            </span>
+        </div>
     )
 }
 

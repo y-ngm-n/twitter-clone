@@ -7,6 +7,13 @@ import {
 } from "firebase/auth";
 import AuthForm from "../components/AuthForm";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faGoogle,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
+
 
 const Auth = ({ refreshUser }) => {
 
@@ -25,11 +32,21 @@ const Auth = ({ refreshUser }) => {
 
     // return
     return (
-        <div>
+        <div className="authContainer">
+            <FontAwesomeIcon
+                icon={faTwitter}
+                color={"#04AAFF"}
+                size="3x"
+                style={{ marginBottom: 30 }}
+            />
             <AuthForm refreshUser={refreshUser} />
-            <div>
-                <button name="google" onClick={socialBtnClicked}>Continue with Google</button>
-                <button name="github" onClick={socialBtnClicked}>Continue with Github</button>
+            <div className="authBtns">
+                <button onClick={socialBtnClicked} name="google" className="authBtn">
+                    Continue with Google <FontAwesomeIcon icon={faGoogle} />
+                </button>
+                <button onClick={socialBtnClicked} name="github" className="authBtn">
+                    Continue with Github <FontAwesomeIcon icon={faGithub} />
+                </button>
             </div>
         </div>
     )

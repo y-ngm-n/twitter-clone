@@ -5,6 +5,9 @@ import { db, storage } from "../firebase";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { ref, deleteObject } from "firebase/storage";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+
 
 const Tweet = ({ tweetObj, isMine }) => {
 
@@ -38,29 +41,39 @@ const Tweet = ({ tweetObj, isMine }) => {
 
   // return
   return (
-    <div>
+    <div className="tweet">
       {editing ? (
         <>
-          <form onSubmit={editFormSubmitted}>
+          <form onSubmit={editFormSubmitted} className="container tweetEdit">
             <input
               type="text"
               placeholder="Editing..."
               value={newTweet}
               onChange={editInputChanged}
+              className="formInput"
               required
+              autoFocus
             />
-            <input type="submit" value="Update" />
+            <input type="submit" value="Update" className="formBtn" />
           </form>
-          <button onClick={toggleEditing}>Cancle</button>
+          <span onClick={toggleEditing} className="formBtn cancelBtn">
+            Cancel
+          </span>
         </>
       ) : (
         <>
-          {tweetObj.fileURL && <img src={tweetObj.fileURL} alt="img" width="150px" height="150px" />}
           <h4>{tweetObj.text}</h4>
-          {isMine && (<>
-            <button onClick={toggleEditing}>Edit</button>
-            <button onClick={deleteBtnClicked}>Delete</button>
-          </>)}
+          {tweetObj.fileURL && <img src={tweetObj.fileURL} />}
+          {isMine && (
+            <div className="tweet__actions">
+              <span onClick={deleteBtnClicked}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </div>
+          )}
         </>
       )}
     </div>
